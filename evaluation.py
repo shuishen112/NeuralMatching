@@ -69,10 +69,10 @@ def evaluationbyFile(modelfile,resultfile="result.text",groundtruth=qa_path):
 	subprocess.call(cmd, shell=True)
 def evaluationBypandas(df,predicted):
     df["score"]=predicted
-    mrr= df.groupby("question").apply(mrr_metric).mean()
-    map= df.groupby("question").apply(map_metric).mean()
-    percsisionAT1= df.groupby("question").apply(percisionAT1_metric).mean()
-    return map,mrr,percsisionAT1
+    mrr= df.groupby("s1").apply(mrr_metric).mean()
+    map= df.groupby("s1").apply(map_metric).mean()
+    # percsisionAT1= df.groupby("s1").apply(percisionAT1_metric).mean()
+    return map,mrr
 def precision_per(group):
 	group = sklearn.utils.shuffle(group,random_state =132)
 	candidates=group.sort_values(by='score',ascending=False).reset_index()
